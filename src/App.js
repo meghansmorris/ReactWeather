@@ -5,7 +5,6 @@ import Weather from "./components/Weather";
 
 require('dotenv').config();
 const REACT_APP_API = process.env.REACT_APP_API;
-//const REACT_APP_API='8b9339248ad0de5e787d451d62f78319';
 
 class App extends React.Component {
 
