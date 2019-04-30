@@ -3,6 +3,7 @@ import Titles from "./components/Titles";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
 import SiteNav from "./components/Nav";
+import ImageHeader from "./components/Jumbotron";
 
 require('dotenv').config();
 const REACT_APP_API = process.env.REACT_APP_API;
@@ -58,6 +59,7 @@ class App extends React.Component {
     return (
       <div>
         <SiteNav />
+        <ImageHeader />
         <Titles />
         <Form getWeather={this.getWeather}/>
         <Weather 
