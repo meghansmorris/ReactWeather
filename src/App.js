@@ -21,36 +21,48 @@ class App extends React.Component {
   getWeather = async (e) => {
     e.preventDefault();
     //use the element tagName to get the values entered into the form
-    const city = e.target.elements.city.value;
+    const zip = e.target.elements.zip.value;
     const country = e.target.elements.country.value;
 
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${REACT_APP_API}&units=imperial`);
+    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${zip},${country}&appid=${REACT_APP_API}&units=imperial`);
     const data = await api_call.json();
+    console.log(data);
 
-    if(city && country) {
-      console.log(data);
+    var wf = [];
+    wf += "<h2>" + data.name + "</h2>";
+    wf.forEach(data.list, function(index, val) {
+      wf += "<p>"
+      wf += val.main.temp + "&degF"
+      wf += "</p>"
+    })
 
-      this.setState({
-        temp: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.main.humidity,
-        icon: data.weather[0].icon,
-        desc: data.weather[0].description,
-        error: ''
-      })
-    } else {
-      this.setState({
-        temp: undefined,
-        city: undefined,
-        country: undefined,
-        humidity: undefined,
-        icon: undefined,
-        desc: undefined,
-        error: 'Please enter a city and country.'
-      })
+    // if(zip && country) {
+    //   console.log(data);
+
+
+    //   }
+
+      // this.setState({
+      //   temp: data.main.temp,
+      //   city: data.name,
+      //   country: data.sys.country,
+      //   humidity: data.main.humidity,
+      //   icon: data.weather[0].icon,
+      //   desc: data.weather[0].description,
+      //   error: ''
+      // })
+    // } else {
+    //   this.setState({
+    //     temp: undefined,
+    //     city: undefined,
+    //     country: undefined,
+    //     humidity: undefined,
+    //     icon: undefined,
+    //     desc: undefined,
+    //     error: 'Please enter a city and country.'
+    //   })
     }
-  }
+  //}
 
   render() {
     return (
